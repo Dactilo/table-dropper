@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+        var SampleApp = angular.module('SampleApp', ["dactilo-tabledropper"])
+            .controller("SampleController", function ($scope) {
+                $scope.message = "test";
+            })
+    </script>
+</head>
+
+
+<body ng-app="SampleApp">
+
+<div ng-controller="SampleController">
+    <table dtd-table>
+        <thead>
+        <tr>
+            <th>A</th>
+            <th class="handle">B</th>
+            <th class="handle">C</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td class="handle">1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td class="handle">5</td>
+            <td>6</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
