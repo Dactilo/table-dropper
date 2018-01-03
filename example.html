@@ -39,6 +39,10 @@
                     }]]
                 };
 
+                $scope.onDrop = function(oldIndex, newIndex, mode) {
+                    alert("Dropped: ", oldIndex, newIndex, mode);
+                };
+
                 $scope.$watch('model', function(model) {
                     $scope.modelAsJson = angular.toJson(model, true);
                 }, true);
@@ -49,7 +53,7 @@
 
 <body ng-app="SampleApp">
 <div ng-controller="SampleController">
-    <table dtd-table dtd-model="model">
+    <table dtd-table dtd-model="model" dtd-drop="onDrop">
         <thead>
         <tr>
             <th ng-repeat="row in model.header" class="handle">{{ row.label }}</th>

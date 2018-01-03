@@ -5,13 +5,15 @@ import {IScope, ITimeoutService} from "angular";
 export module DactiloTableDropperModule {
     interface TableDirectiveScope extends IScope {
         dtdModel: any;
+        dtdDrop: any;
     }
 
     let TableDirective = function($timeout: ITimeoutService): angular.IDirective {
         return {
             transclude: false,
             scope: {
-                dtdModel: '='
+                dtdModel: '=',
+                dtdDrop: '='
             },
             restrict: 'A',
             link: function(scope: TableDirectiveScope,
@@ -40,6 +42,10 @@ export module DactiloTableDropperModule {
                                 arrayMove(line, oldIndex, newIndex);
                             });
                             scope.$apply();
+                        }
+
+                        if(scope.dtdDrop) {
+                            scope.dtdDrop(oldIndex, newIndex, mode);
                         }
                     });
                 });
