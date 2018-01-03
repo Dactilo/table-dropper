@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "dactilo-tabledropper",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "license": "MIT",
+  "version": "0.1",
+  "description": "",
+  "license": "Apache",
   "dependencies": {
     "crossvent": "^1.5.5",
     "dragula-with-animation": "^3.7.2",
