@@ -9,38 +9,75 @@
     <script>
         var SampleApp = angular.module('SampleApp', ["dactilo-tabledropper"])
             .controller("SampleController", function ($scope) {
-                $scope.message = "test";
+                $scope.model = {
+                    header: [{
+                        label: "A"
+                    }, {
+                        label: "B"
+                    }, {
+                        label: "C"
+                    }],
+
+                    lines: [[{
+                        label: "1"
+                    }, {
+                        label: "2"
+                    }, {
+                        label: "3"
+                    }], [{
+                        label: "4"
+                    }, {
+                        label: "5"
+                    }, {
+                        label: "6"
+                    }], [{
+                        label: "7"
+                    }, {
+                        label: "8"
+                    }, {
+                        label: "9"
+                    }]]
+                };
+
+                $scope.$watch('model', function(model) {
+                    $scope.modelAsJson = angular.toJson(model, true);
+                }, true);
             })
     </script>
 </head>
 
 
 <body ng-app="SampleApp">
-
 <div ng-controller="SampleController">
-    <table dtd-table>
+    <table dtd-table dtd-model="model">
         <thead>
         <tr>
-            <th>A</th>
-            <th class="handle">B</th>
-            <th class="handle">C</th>
+            <th ng-repeat="row in model.header" class="handle">{{ row.label }}</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr>
-            <td class="handle">1</td>
-            <td>2</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td class="handle">5</td>
-            <td>6</td>
+        <tr ng-repeat="line in model.lines">
+            <td ng-class="{ 'handle' : $index == 0 }" ng-repeat="row in line">{{ row.label }}</td>
         </tr>
         </tbody>
     </table>
 
+    <table>
+        <thead>
+        <tr>
+            <th ng-repeat="row in model.header">{{ row.label }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="line in model.lines">
+            <td ng-repeat="row in line">{{ row.label }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <pre>{{ modelAsJson }}</pre>
 </div>
 </body>
 </html>
