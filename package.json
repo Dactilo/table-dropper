@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "license": "Apache",
+  "main": "main.js",
   "dependencies": {
     "crossvent": "^1.5.5",
     "dragula-with-animation": "^3.7.2",
