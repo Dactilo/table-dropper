@@ -131,7 +131,7 @@ export default class Dragger {
             if (
                     (this as any).options.onlyBody && mode === 'row' && !arrayFrom(table.children).some(o => o.nodeName === 'TBODY')
                         ||
-                    (this as any).options.onlyBody && mode === 'column' && i == 0
+                    (this as any).options.onlyBody && (this as any).options.fixFirstColumn && mode === 'column' && i == 0
                 ) {
                 li.classList.add(classes.staticTable);
             }

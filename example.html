@@ -18,32 +18,41 @@
                         label: "C"
                     }],
 
-                    lines: [[{
-                        label: "1"
-                    }, {
-                        label: "2"
-                    }, {
-                        label: "3"
-                    }], [{
-                        label: "4"
-                    }, {
-                        label: "5"
-                    }, {
-                        label: "6"
-                    }], [{
-                        label: "7"
-                    }, {
-                        label: "8"
-                    }, {
-                        label: "9"
-                    }]]
+                    lines: [{
+                        first: {
+                            label: "1"
+                        },
+                        cells: [{
+                            label: "2"
+                        }, {
+                            label: "3"
+                        }]
+                    },{
+                        first: {
+                            label: "4"
+                        },
+                        cells: [{
+                            label: "5"
+                        }, {
+                            label: "6"
+                        }]
+                    },{
+                        first: {
+                            label: "7"
+                        },
+                        cells: [{
+                            label: "8"
+                        }, {
+                            label: "9"
+                        }]
+                    }]
                 };
 
-                $scope.onDrop = function(oldIndex, newIndex, mode) {
+                $scope.onDrop = function (oldIndex, newIndex, mode) {
                     alert("Dropped: " + oldIndex + " " + newIndex + " " + mode);
                 };
 
-                $scope.$watch('model', function(model) {
+                $scope.$watch('model', function (model) {
                     $scope.modelAsJson = angular.toJson(model, true);
                 }, true);
             })
@@ -62,7 +71,8 @@
 
         <tbody>
         <tr ng-repeat="line in model.lines">
-            <td ng-class="{ 'handle' : $index == 0 }" ng-repeat="row in line">{{ row.label }}</td>
+            <td class="handle">{{ line.first.label }}</td>
+            <td ng-repeat="cell in line.cells">{{ cell.label }}</td>
         </tr>
         </tbody>
     </table>
@@ -70,13 +80,14 @@
     <table>
         <thead>
         <tr>
-            <th ng-repeat="row in model.header">{{ row.label }}</th>
+            <th ng-repeat="cell in model.header">{{ cell.label }}</th>
         </tr>
         </thead>
 
         <tbody>
         <tr ng-repeat="line in model.lines">
-            <td ng-repeat="row in line">{{ row.label }}</td>
+            <td>{{ line.first.label }}</td>
+            <td ng-repeat="cell in line.cells">{{ cell.label }}</td>
         </tr>
         </tbody>
     </table>

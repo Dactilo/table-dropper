@@ -38034,6 +38034,7 @@ var DactiloTableDropperModule;
                     index_1.TableDraggerModule.tableDragger(element[0], {
                         mode: "free",
                         onlyBody: true,
+                        fixFirstColumn: true,
                         dragHandler: '.handle'
                     }).on('drop', function (oldIndex, newIndex, el, mode) {
                         if (mode == "row") {
@@ -38043,7 +38044,7 @@ var DactiloTableDropperModule;
                         if (mode == "column") {
                             arrayMove(scope.dtdModel.header, oldIndex, newIndex);
                             scope.dtdModel.lines.forEach(function (line) {
-                                arrayMove(line, oldIndex, newIndex);
+                                arrayMove(line.cells, oldIndex - 1, newIndex - 1);
                             });
                             scope.$apply();
                         }
@@ -38374,7 +38375,7 @@ var Dragger = (function () {
             var table = li && li.querySelector('table');
             if (_this.options.onlyBody && mode === 'row' && !arrayFrom(table.children).some(function (o) { return o.nodeName === 'TBODY'; })
                 ||
-                    _this.options.onlyBody && mode === 'column' && i == 0) {
+                    _this.options.onlyBody && _this.options.fixFirstColumn && mode === 'column' && i == 0) {
                 li.classList.add(classes_1.default.staticTable);
             }
             if (s && dex < (l - 1)) {

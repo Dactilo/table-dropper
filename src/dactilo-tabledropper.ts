@@ -28,6 +28,7 @@ export module DactiloTableDropperModule {
                     TableDraggerModule.tableDragger(element[0], {
                         mode: "free",
                         onlyBody: true,
+                        fixFirstColumn: true,
                         dragHandler: '.handle'
                     }).on('drop', (oldIndex, newIndex, el, mode) => {
                         if(mode == "row") {
@@ -39,7 +40,7 @@ export module DactiloTableDropperModule {
                             arrayMove(scope.dtdModel.header, oldIndex, newIndex );
 
                             scope.dtdModel.lines.forEach(line => {
-                                arrayMove(line, oldIndex, newIndex);
+                                arrayMove(line.cells, oldIndex - 1, newIndex - 1);
                             });
                             scope.$apply();
                         }
