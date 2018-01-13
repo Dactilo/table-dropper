@@ -38042,7 +38042,7 @@ var DactiloTableDropperModule;
                             scope.$apply();
                         }
                         if (mode == "column") {
-                            arrayMove(scope.dtdModel.header, oldIndex, newIndex);
+                            arrayMove(scope.dtdModel.header.cells, oldIndex - 1, newIndex - 1);
                             scope.dtdModel.lines.forEach(function (line) {
                                 arrayMove(line.cells, oldIndex - 1, newIndex - 1);
                             });

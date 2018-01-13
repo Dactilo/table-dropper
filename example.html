@@ -10,13 +10,16 @@
         var SampleApp = angular.module('SampleApp', ["dactilo-tabledropper"])
             .controller("SampleController", function ($scope) {
                 $scope.model = {
-                    header: [{
-                        label: "A"
-                    }, {
-                        label: "B"
-                    }, {
-                        label: "C"
-                    }],
+                    header: {
+                        first: {
+                            label: "A"
+                        },
+                        cells: [{
+                            label: "B"
+                        }, {
+                            label: "C"
+                        }]
+                    },
 
                     lines: [{
                         first: {
@@ -27,7 +30,7 @@
                         }, {
                             label: "3"
                         }]
-                    },{
+                    }, {
                         first: {
                             label: "4"
                         },
@@ -36,7 +39,7 @@
                         }, {
                             label: "6"
                         }]
-                    },{
+                    }, {
                         first: {
                             label: "7"
                         },
@@ -65,7 +68,8 @@
     <table dtd-table dtd-model="model" dtd-drop="onDrop">
         <thead>
         <tr>
-            <th ng-repeat="row in model.header" class="handle">{{ row.label }}</th>
+            <th>{{ model.header.first.label }}</th>
+            <th ng-repeat="row in model.header.cells" class="handle">{{ row.label }}</th>
         </tr>
         </thead>
 
@@ -80,7 +84,8 @@
     <table>
         <thead>
         <tr>
-            <th ng-repeat="cell in model.header">{{ cell.label }}</th>
+            <th>{{ model.header.first.label }}</th>
+            <th ng-repeat="row in model.header.cells" class="handle">{{ row.label }}</th>
         </tr>
         </thead>
 
