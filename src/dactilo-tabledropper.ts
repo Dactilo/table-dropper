@@ -18,14 +18,12 @@ export module DactiloTableDropperModule {
             restrict: 'A',
             link: function(scope: TableDirectiveScope,
                            element: any) {
-                let arrayMove = function(arr, fromIndex, toIndex) {
-                    let element = arr[fromIndex];
-                    arr.splice(fromIndex, 1);
-                    arr.splice(toIndex, 0, element);
-                };
-
-                $timeout(function () {
-                    TableDraggerModule.tableDragger(element[0], {
+                let dragger = null;
+                let enableTableDragger = function() {
+                    if(dragger != null) {
+                        dragger.destroy();
+                    }
+                    dragger = TableDraggerModule.tableDragger(element[0], {
                         mode: "free",
                         onlyBody: true,
                         fixFirstColumn: true,
@@ -49,8 +47,21 @@ export module DactiloTableDropperModule {
                             scope.dtdDrop(oldIndex, newIndex, mode);
                         }
                     });
+                };
+
+                let arrayMove = function(arr, fromIndex, toIndex) {
+                    let element = arr[fromIndex];
+                    arr.splice(fromIndex, 1);
+                    arr.splice(toIndex, 0, element);
+                };
+
+                $timeout(function () {
+                    enableTableDragger();
                 });
 
+                scope.$watch('dtdModel', function () {
+                    enableTableDragger();
+                });
             }
         }
     };

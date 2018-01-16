@@ -38025,13 +38025,12 @@ var DactiloTableDropperModule;
             },
             restrict: 'A',
             link: function (scope, element) {
-                var arrayMove = function (arr, fromIndex, toIndex) {
-                    var element = arr[fromIndex];
-                    arr.splice(fromIndex, 1);
-                    arr.splice(toIndex, 0, element);
-                };
-                $timeout(function () {
-                    index_1.TableDraggerModule.tableDragger(element[0], {
+                var dragger = null;
+                var enableTableDragger = function () {
+                    if (dragger != null) {
+                        dragger.destroy();
+                    }
+                    dragger = index_1.TableDraggerModule.tableDragger(element[0], {
                         mode: "free",
                         onlyBody: true,
                         fixFirstColumn: true,
@@ -38052,6 +38051,17 @@ var DactiloTableDropperModule;
                             scope.dtdDrop(oldIndex, newIndex, mode);
                         }
                     });
+                };
+                var arrayMove = function (arr, fromIndex, toIndex) {
+                    var element = arr[fromIndex];
+                    arr.splice(fromIndex, 1);
+                    arr.splice(toIndex, 0, element);
+                };
+                $timeout(function () {
+                    enableTableDragger();
+                });
+                scope.$watch('dtdModel', function () {
+                    enableTableDragger();
                 });
             }
         };
