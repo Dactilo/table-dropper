@@ -38027,6 +38027,7 @@ var DactiloTableDropperModule;
             link: function (scope, element) {
                 var dragger = null;
                 var enableTableDragger = function () {
+                    console.log("Refreshed table dragger");
                     if (dragger != null) {
                         dragger.destroy();
                     }
@@ -38062,7 +38063,7 @@ var DactiloTableDropperModule;
                 });
                 scope.$watch('dtdModel', function () {
                     enableTableDragger();
-                });
+                }, true);
             }
         };
     };

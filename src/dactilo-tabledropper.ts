@@ -61,7 +61,7 @@ export module DactiloTableDropperModule {
 
                 scope.$watch('dtdModel', function () {
                     enableTableDragger();
-                });
+                }, true);
             }
         }
     };

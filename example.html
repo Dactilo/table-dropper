@@ -9,6 +9,7 @@
     <script>
         var SampleApp = angular.module('SampleApp', ["dactilo-tabledropper"])
             .controller("SampleController", function ($scope) {
+
                 $scope.model = {
                     header: {
                         first: {
@@ -49,6 +50,18 @@
                             label: "9"
                         }]
                     }]
+                };
+
+                $scope.addColumn = function() {
+                    $scope.model.header.cells.push({
+                        label: "X"
+                    });
+
+                    $scope.model.lines.forEach(function(line) {
+                        line.cells.push({
+                            label: "X"
+                        });
+                    });
                 };
 
                 $scope.onDrop = function (oldIndex, newIndex, mode) {
@@ -97,6 +110,7 @@
         </tbody>
     </table>
 
+    <button ng-click="addColumn()">Add a column</button>
     <pre>{{ modelAsJson }}</pre>
 </div>
 </body>
