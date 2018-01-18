@@ -1,6 +1,6 @@
 {
   "name": "dactilo-tabledropper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "license": "Apache",
   "main": "main.js",
@@ -8,7 +8,8 @@
     "crossvent": "^1.5.5",
     "dragula-with-animation": "^3.7.2",
     "array.from": "^1.0.3",
-    "rx": "^4.1.0"
+    "rx": "^4.1.0",
+    "es6-object-assign": ""
   },
   "devDependencies": {
     "@types/angular": "",

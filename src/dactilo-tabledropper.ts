@@ -2,6 +2,10 @@ import angular = require("angular");
 import {TableDraggerModule} from "./table-dragger/index";
 import {IScope, ITimeoutService} from "angular";
 
+import * as ObjectPolyfill from "es6-object-assign";
+
+ObjectPolyfill.polyfill();
+
 export module DactiloTableDropperModule {
     interface TableDirectiveScope extends IScope {
         dtdModel: any;
